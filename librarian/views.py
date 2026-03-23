@@ -20,6 +20,7 @@ class LendingViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
+        print(f"Fetching Lending queryset for user: {user}")
         if user.user_type == CustomUser.UserType.USER:
             return Lending.objects.filter(
                 user=user, payment__status=Payment.PaymentStatus.COMPLETED
